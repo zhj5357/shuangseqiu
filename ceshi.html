@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双色球选号</title>
+    <!-- 引入样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@1.4/lib/index.css">
+
+<!-- 引入组件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@1.4/lib/vant.min.js"></script> -->
+<style>
+  .content {
+    width: 100%;   
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+  }
+  .content>div {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #333;
+  }
+
+  .container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .container>div {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #333;
+  }
+</style>
+</head>
+<body>
+
+    <!-- <div class="aa">
+      <p>123</p>
+    </div> -->
+  <div class="content">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+    <div>17</div>
+    <div>18</div>
+    <div>19</div>
+    <div>20</div>
+    <div>21</div>
+    <div>22</div>
+    <div>23</div>
+    <div>24</div>
+    <div>25</div>
+    <div>26</div>
+    <div>27</div>
+    <div>28</div>
+    <div>29</div>
+    <div>30</div>
+    <div>31</div>
+    <div>32</div>
+    <div>33</div>
+  </div>
+
+  <div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+  </div>
+  <button onclick="getRed()">红球机选</button>
+  <button onclick="getBlue()">蓝球机选</button>
+  <button onclick="getOne()">一次机选</button>
+  <script>
+    // const aa = document.getElementsByClassName('aa')[0].innerText
+    // console.log(aa);
+    function getRed() {
+      const content = document.getElementsByClassName('content')[0]
+      Clear(content)
+      getRandom(content, 6)
+    }
+    function getBlue() {
+      const container = document.getElementsByClassName('container')[0]
+      Clear(container)
+      getRandom(container, 1)
+    }
+    function getOne() {
+      const content = document.getElementsByClassName('content')[0]
+      Clear(content)
+      getRandom(content, 6)
+
+      const container = document.getElementsByClassName('container')[0]
+      Clear(container)
+      getRandom(container, 1)
+    }
+    
+    function Clear(x) {
+      
+      const divs = x.getElementsByTagName('div')
+      for(let i = 0; i < divs.length; i++) {
+        divs[i].style.backgroundColor = 'white'
+      }
+    }
+
+    function getRandom(x, n) {
+      const divs = x.getElementsByTagName('div')
+      let arr = []
+      for(let i = 0; i < divs.length; i++) {
+        arr.push(divs[i].innerHTML)
+      }
+      const min = arr[0]
+      const max = arr[arr.length-1]
+      let array = []
+        for(let i = 0; i < n; i++) {
+          let a = parseInt(Math.random()*(max-min +1)+min, 10);
+          array.push(a)
+        }
+      const set = new Set(array)
+        let ar = [...set]
+        if(ar.length !== n) {
+          array = []
+          ar = []
+          getRandom(x, n)
+        }
+      console.log(ar);
+      for(let i = 0; i < ar.length; i++) {
+        divs[ar[i]].style.backgroundColor='pink'
+      }
+    }
+  </script>
+
+
+</body>
+</html>
